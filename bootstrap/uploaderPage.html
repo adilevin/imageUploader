@@ -80,24 +80,24 @@
         </div>
         <canvas id='my_canvas'></canvas>
     <script>
-      var openFile = function(event) {
-        var input = event.target;
-        var reader = new FileReader();
-        reader.onload = function(){
-            var dataURL = reader.result;
-            var preview = document.getElementById('image_preview');
-            preview.src = dataURL;
-            var c = $("#my_canvas");
-            var img = $("#image_preview");
-            var w = img.width();
-            var h = img.height();
-            c.attr('height', h).attr('width', w);
-            var ctx = c[0].getContext("2d");
-            ctx.drawImage(img[0],0,0,w,h);
-            var png_data = c[0].toDataURL("image/png");
-        };
-        reader.readAsDataURL(input.files[0]);
-      };
+//      var openFile = function(event) {
+//        var input = event.target;
+//        var reader = new FileReader();
+//        reader.onload = function(){
+//            var dataURL = reader.result;
+//            var preview = document.getElementById('image_preview');
+//            preview.src = dataURL;
+//            var c = $("#my_canvas");
+//            var img = $("#image_preview");
+//            var w = img.width();
+//            var h = img.height();
+//            c.attr('height', h).attr('width', w);
+//            var ctx = c[0].getContext("2d");
+//            ctx.drawImage(img[0],0,0,w,h);
+//            var png_data = c[0].toDataURL("image/png");
+//        };
+//        reader.readAsDataURL(input.files[0]);
+//      };
     </script>
 	</div>
 </div>
