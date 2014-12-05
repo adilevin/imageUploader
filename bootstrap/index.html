@@ -26,8 +26,49 @@
 
     <style>
 
+        body {
+            background-color: #fff;
+        }
+
         #image_preview {
             height: 140px;
+        }
+
+        .container {
+            width: 95%;
+        }
+
+        .row1 {
+            background-color: #444;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        input {
+            margin: 15px auto;
+        }
+
+        .row2 {
+            background-color: #888;
+            text-align: center;
+        }
+
+        #my_canvas {
+            display:none;
+        }
+
+        #image_preview {
+            margin: 15px auto;
+            display: block;
+            #border: solid 3px blue;
+            border-radius: 10px;
+        }
+
+        .row3 {
+            background-color: #BBB;
         }
 
     </style>
@@ -36,18 +77,18 @@
 <body>
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="jumbotron">
-				<h1>
-					Image uploader
-				</h1>
-				<p>
-					Choose an existing image, or capture a photo to upload
-				</p>
-			</div>
+		<div class="col-md-12 column row1">
+            <h1>
+                Image uploader
+            </h1>
 		</div>
-    <input type='file' accept='image/*' onchange='openFile(event)'><br>
-    <img id='image_preview'>
+        <div class="col-md-12 column row2">
+            <input type='file' accept='image/*' onchange='openFile(event)'><br>
+            <label for="text_input">Enter free text:</label><input id="text_input" type='text'>
+        </div>
+        <div class="col-md-12 column row3">
+            <img id='image_preview' src="img/no_image.png">
+        </div>
     <canvas id='my_canvas'></canvas>
     <script>
       var openFile = function(event) {
