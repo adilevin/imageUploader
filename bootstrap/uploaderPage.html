@@ -77,19 +77,14 @@
 <body>
 <div class="container">
 	<div class="row clearfix">
-		<div class="col-md-12 column row1">
-            <h1>
-                Image uploader
-            </h1>
-		</div>
-        <div class="col-md-12 column row2">
-            <input type='file' accept='image/*' onchange='openFile(event)'><br>
-            <label for="text_input">Enter free text:</label><input id="text_input" type='text'>
-        </div>
         <div class="col-md-12 column row3">
             <img id='image_preview' src="img/no_image.png">
         </div>
-    <canvas id='my_canvas'></canvas>
+        <div class="col-md-12 column row2">
+            <input type='file' accept='image/*' onchange='openFile(event)'><br>
+            <label for="text_input">Free text:</label><input id="text_input" type='text'>
+        </div>
+        <canvas id='my_canvas'></canvas>
     <script>
       var openFile = function(event) {
         var input = event.target;
@@ -103,8 +98,6 @@
             var w = img.width();
             var h = img.height();
             c.attr('height', h).attr('width', w);
-//            c.width(w);
-//            c.height(h);
             var ctx = c[0].getContext("2d");
             ctx.drawImage(img[0],0,0,w,h);
             var png_data = c[0].toDataURL("image/png");
