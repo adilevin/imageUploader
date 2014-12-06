@@ -25,7 +25,7 @@
         }
 
         #image_preview {
-            height: 140px;
+            height: 40vh;
         }
 
         .container {
@@ -47,6 +47,7 @@
 
         .row2 {
             background-color: #888;
+            height: 60vh;
             text-align: center;
         }
 
@@ -75,29 +76,29 @@
             <img id='image_preview' src="img/no_image.png">
         </div>
         <div class="col-md-12 column row2">
-            <input type='file' accept='image/*' capture>
+            <input type='file' accept='image/*' onchange='openFile(event)'>
             <label for="text_input">Free text:</label><input id="text_input" type='text'>
         </div>
         <canvas id='my_canvas'></canvas>
     <script>
-//      var openFile = function(event) {
-//        var input = event.target;
-//        var reader = new FileReader();
-//        reader.onload = function(){
-//            var dataURL = reader.result;
-//            var preview = document.getElementById('image_preview');
-//            preview.src = dataURL;
-//            var c = $("#my_canvas");
-//            var img = $("#image_preview");
-//            var w = img.width();
-//            var h = img.height();
-//            c.attr('height', h).attr('width', w);
-//            var ctx = c[0].getContext("2d");
-//            ctx.drawImage(img[0],0,0,w,h);
-//            var png_data = c[0].toDataURL("image/png");
-//        };
-//        reader.readAsDataURL(input.files[0]);
-//      };
+      var openFile = function(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function(){
+            var dataURL = reader.result;
+            var preview = document.getElementById('image_preview');
+            preview.src = dataURL;
+            var c = $("#my_canvas");
+            var img = $("#image_preview");
+            var w = img.width();
+            var h = img.height();
+            c.attr('height', h).attr('width', w);
+            var ctx = c[0].getContext("2d");
+            ctx.drawImage(img[0],0,0,w,h);
+            var png_data = c[0].toDataURL("image/png");
+        };
+        reader.readAsDataURL(input.files[0]);
+      };
     </script>
 	</div>
 </div>
