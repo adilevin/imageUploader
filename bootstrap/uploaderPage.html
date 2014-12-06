@@ -6,17 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
 
   <!-- Fav and touch icons -->
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <style>
 
@@ -25,15 +17,15 @@
         }
 
         #image_preview {
-            height: 40vh;
+            position: absolute;
+            top: 5vh;
+            height: 30vh;
+            border-radius: 10px;
         }
 
         .container {
-            width: 95%;
-        }
-
-        .row1 {
-            background-color: #444;
+            width: 100%;
+            height: 100vh;
         }
 
         h1 {
@@ -45,41 +37,49 @@
             margin: 15px auto;
         }
 
-        .row2 {
+        .bottom_row {
+            position: absolute;
+            top: 40vh;
             background-color: #888;
             height: 60vh;
+            width: 100%;
             text-align: center;
+        }
+
+        .top_row {
+            position: absolute;
+            text-align: center;
+            top: 0vh;
+            height: 40vh;
+            width: 100%;
+            background-color: #BBB;
         }
 
         #my_canvas {
             display:none;
         }
 
-        #image_preview {
-            margin: 15px auto;
-            display: block;
-            #border: solid 3px blue;
-            border-radius: 10px;
+        body, div, image {
+            margin: 0;
+            padding: 0;
         }
 
-        .row3 {
-            background-color: #BBB;
-        }
 
     </style>
 </head>
 
 <body>
 <div class="container">
-	<div class="row clearfix">
-        <div class="col-md-12 column row3">
-            <img id='image_preview' src="img/no_image.png">
-        </div>
-        <div class="col-md-12 column row2">
-            <input type='file' accept='image/*' onchange='openFile(event)'>
-            <label for="text_input">Free text:</label><input id="text_input" type='text'>
-        </div>
-        <canvas id='my_canvas'></canvas>
+    <div class="top_row">
+        <img id='image_preview' src="img/no_image.png">
+    </div>
+    <div class="bottom_row">
+        <br>
+        <input type='file' accept='image/*' capture="false" onchange='openFile(event)'>
+        <br>
+        <label for="text_input">Free text:</label><input id="text_input" type='text'>
+    </div>
+    <canvas id='my_canvas'></canvas>
     <script>
       var openFile = function(event) {
         var input = event.target;
