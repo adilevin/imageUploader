@@ -111,18 +111,17 @@
             return c.toDataURL("image/png");
         }
         var openFile = function(event) {
-        var input = event.target;
-        var reader = new FileReader();
-        reader.onload = function(){
+            var input = event.target;
             var img = document.getElementById('image_preview');
-            img.src = 'svg/loading_animation.svg';
-            setTimeout(function(){
+            var reader = new FileReader();
+            reader.onloadstart = function () {
+                img.src = 'svg/loading_animation.svg';
+            };
+            reader.onload = function () {
                 img.src = reader.result;
-                //var png_data = encodeAsPNG(img);
-            },5000);
+            };
+            reader.readAsDataURL(input.files[0]);
         };
-        reader.readAsDataURL(input.files[0]);
-      };
     </script>
 	</div>
 </div>
