@@ -100,13 +100,15 @@
                 inp.style['font-style'] = 'normal';
             }
         }
-        function copyImageToCanvas(img, c) {
-            var w = img.style.width();
-            var h = img.style.height();
+        function encodeAsPNG(img) {
+            var c = document.getElementById("my_canvas")
+            var w = img.style.width;
+            var h = img.style.height;
             c.style.height = h;
             c.style.width = w;
             var ctx = c.getContext("2d");
-            ctx.drawImage(img[0], 0, 0, w, h);
+            ctx.drawImage(img, 0, 0, w, h);
+            return c.toDataURL("image/png");
         }
         var openFile = function(event) {
         var input = event.target;
@@ -114,8 +116,7 @@
         reader.onload = function(){
             var img = document.getElementById('image_preview');
             img.src = reader.result;
-            copyImageToCanvas(img, document.getElementById("my_canvas"));
-            var png_data = c.toDataURL("image/png");
+            var png_data = encodeAsPNG(img);
         };
         reader.readAsDataURL(input.files[0]);
       };
