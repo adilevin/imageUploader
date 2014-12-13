@@ -115,8 +115,11 @@
         var reader = new FileReader();
         reader.onload = function(){
             var img = document.getElementById('image_preview');
-            img.src = reader.result;
-            //var png_data = encodeAsPNG(img);
+            img.src = 'svg/loading_animation.svg';
+            setTimeout(function(){
+                img.src = reader.result;
+                //var png_data = encodeAsPNG(img);
+            },1);
         };
         reader.readAsDataURL(input.files[0]);
       };
