@@ -8,7 +8,7 @@
   <meta name="author" content="">
 
   <!-- Fav and touch icons -->
-	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>-->
 
     <style>
 
@@ -54,6 +54,11 @@
             background-color: #BBB;
         }
 
+        #text_input {
+            width:50%;
+            padding: 10px;
+        }
+
         #my_canvas {
             display:none;
         }
@@ -70,31 +75,47 @@
 <body>
 <div class="container">
     <div class="top_row">
-        <img id='image_preview' src="img/no_image.png">
+        <img id='image_preview' src="svg/magnifier13.svg">
     </div>
     <div class="bottom_row">
         <br>
         <input type='file' accept='image/*' capture="false" onchange='openFile(event)'>
         <br>
-        <label for="text_input">Free text:</label><input id="text_input" type='text'>
+        <input id="text_input" type='text' onfocus="onFreeTextFocus()">
+        <br>
+        <button type="submit">Upload</button>
     </div>
     <canvas id='my_canvas'></canvas>
     <script>
-      var openFile = function(event) {
+        var default_input_value = " Enter text here..."
+        var inp = document.getElementById('text_input');
+        inp.value = default_input_value;
+        inp.style.color = '#888';
+        inp.style['font-style'] = 'italic';
+        function onFreeTextFocus() {
+            var inp = document.getElementById('text_input');
+            if (inp.value==default_input_value) {
+                inp.value = '';
+                inp.style.color = '#000';
+                inp.style['font-style'] = 'normal';
+            }
+        }
+        function copyImageToCanvas(img, c) {
+            var w = img.style.width();
+            var h = img.style.height();
+            c.style.height = h;
+            c.style.width = w;
+            var ctx = c.getContext("2d");
+            ctx.drawImage(img[0], 0, 0, w, h);
+        }
+        var openFile = function(event) {
         var input = event.target;
         var reader = new FileReader();
         reader.onload = function(){
-            var dataURL = reader.result;
-            var preview = document.getElementById('image_preview');
-            preview.src = dataURL;
-            var c = $("#my_canvas");
-            var img = $("#image_preview");
-            var w = img.width();
-            var h = img.height();
-            c.attr('height', h).attr('width', w);
-            var ctx = c[0].getContext("2d");
-            ctx.drawImage(img[0],0,0,w,h);
-            var png_data = c[0].toDataURL("image/png");
+            var img = document.getElementById('image_preview');
+            img.src = reader.result;
+            copyImageToCanvas(img, document.getElementById("my_canvas"));
+            var png_data = c.toDataURL("image/png");
         };
         reader.readAsDataURL(input.files[0]);
       };
