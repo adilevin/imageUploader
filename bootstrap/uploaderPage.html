@@ -116,7 +116,7 @@
         reader.onload = function(){
             var img = document.getElementById('image_preview');
             img.src = reader.result;
-            var png_data = encodeAsPNG(img);
+            //var png_data = encodeAsPNG(img);
         };
         reader.readAsDataURL(input.files[0]);
       };
